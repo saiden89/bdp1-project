@@ -8,6 +8,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # Autocompletion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -F __start_kubectl k' >>~/.bashrc
+
 source ~/.bashrc
 
 kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
