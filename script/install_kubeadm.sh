@@ -10,7 +10,8 @@ sudo sysctl --system
 
 # (Install containerd)
 sudo apt update
-sudo apt install -y containerdsudo mkdir -p /etc/containerd
+sudo apt install -y containerd
+
 
 # Configure containerd
 sudo mkdir -p /etc/containerd
