@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-server
+  labels:
+    role: nfs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      role: nfs
+  template:
+    metadata:
+      labels:
+        role: nfs
+    spec:
+      containers:
+      - name: nfs-server
+        image: k8s.gcr.io/volume-nfs    
+        ports:
+        - name: nfs
+          containerPort: 2049
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /exports
+          name: mypvc
+      volumes:
+      - name: mypvc
+        hostPath:
+          path: /home/ubuntu/data
+          type: DirectoryOrCreate
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nfs-server
+  labels:
+    role: nfs
+spec:
+  type: ClusterIP  
+  selector:
+    role: nfs
+  ports:
+    - name: tcp-2049
+      port: 2049
+  clusterIP: 10.96.1.10
