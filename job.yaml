@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  ttlSecondsAfterFinished: 10
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: ncbi/blast
+        command: ["touch", "/results/a"]
+       # command: ["makeblastdb",  "-in", "/data/uniprot_sprot.fasta", "-dbtype", "prot", "-out", "/data/upro"]
+        volumeMounts:
+        - name: out
+          mountPath: "/results"
+        - name: in
+          mountPath: "/data"
+      volumes:
+      - name: out
+        persistentVolumeClaim:
+          claimName: nfs
+      - name: in
+        nfs:
+          server: 10.96.1.10
+          path: /
+      restartPolicy: Never
+  backoffLimit: 1
+
