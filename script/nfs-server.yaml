@@ -62,6 +62,7 @@ spec:
   nfs:
     server: 10.96.1.10
     path: "/"
+    
 ---
 
 apiVersion: v1
