@@ -1,5 +1,5 @@
 # Initialize master
-sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --node-name=master
 
 # Configure kubectl
 mkdir -p $HOME/.kube
