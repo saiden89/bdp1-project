@@ -90,7 +90,7 @@ spec:
   storageClassName: ""
   resources:
     requests:
-      storage: 10Gi
+      storage: 15Gi
   volumeName: data
 
 ---
