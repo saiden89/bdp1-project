@@ -58,7 +58,7 @@ spec:
   capacity:
     storage: 15Gi
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   nfs:
     server: 10.96.1.10
     path: /exports/ghrc38
@@ -73,7 +73,7 @@ spec:
   capacity:
     storage: 5Gi
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   nfs:
     server: 10.96.1.10
     path: /exports/results
