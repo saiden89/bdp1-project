@@ -61,7 +61,7 @@ spec:
     - ReadOnlyMany
   nfs:
     server: 10.96.1.10
-    path: /exports/ghrc38
+    path: /exports/grch38
 ---
 
 
