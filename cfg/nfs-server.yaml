@@ -20,6 +20,8 @@ spec:
         ports:
         - name: nfs
           containerPort: 2049
+        - name: rpcbind
+          containerPort: 111
         securityContext:
           privileged: true
         volumeMounts:
@@ -30,7 +32,7 @@ spec:
         hostPath:
           path: /home/ubuntu/data
           type: DirectoryOrCreate
-          
+
 ---
 
 kind: Service
@@ -44,8 +46,11 @@ spec:
   selector:
     role: nfs
   ports:
-    - name: tcp-2049
+    - name: nfs
       port: 2049
+    - name: rpcbind
+      port: 111
+
   clusterIP: 10.96.1.10
 
 ---
@@ -59,11 +64,14 @@ spec:
     storage: 15Gi
   accessModes:
     - ReadOnlyMany
+#  mountOptions:
+#    - hard
+#    - nfsvers=4.1
   nfs:
     server: 10.96.1.10
-    path: /exports/grch38
----
+    path: /grch38
 
+---
 
 apiVersion: v1
 kind: PersistentVolume
@@ -74,9 +82,10 @@ spec:
     storage: 5Gi
   accessModes:
     - ReadWriteMany
+
   nfs:
     server: 10.96.1.10
-    path: /exports/results
+    path: /results
 
 ---
 
@@ -90,7 +99,7 @@ spec:
   storageClassName: ""
   resources:
     requests:
-      storage: 15Gi
+      storage: 5Gi
   volumeName: data
 
 ---
@@ -107,4 +116,3 @@ spec:
     requests:
       storage: 1Gi
   volumeName: results
-  
