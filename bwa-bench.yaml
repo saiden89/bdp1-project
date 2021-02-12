@@ -19,7 +19,7 @@ spec:
           runAsUser: 1000
         resources:
           requests:
-            memory: 3.4Gi
+            memory: 3.5Gi
             cpu: 4
       volumes:
       - name: out
