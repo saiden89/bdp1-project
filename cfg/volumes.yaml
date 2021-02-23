@@ -8,8 +8,8 @@ spec:
   accessModes:
     - ReadOnlyMany
   nfs:
-    server: 10.96.1.10
-    path: /home/ubuntu/data/grch38
+    server: 172.31.29.200
+    path: /home/ubuntu/data/data
 
 ---
 
@@ -24,7 +24,7 @@ spec:
     - ReadWriteMany
   
   nfs:
-    server: 10.96.1.10
+    server: 172.31.29.200
     path: /home/ubuntu/data/results
 
 ---
