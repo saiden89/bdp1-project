@@ -8,8 +8,13 @@ spec:
   accessModes:
     - ReadOnlyMany
   nfs:
+<<<<<<< HEAD
     server: 172.31.29.200
     path: /home/ubuntu/data/data
+=======
+    server: <NFS-SERVER-IP>
+    path: /home/ubuntu/data
+>>>>>>> 6b7023e4b5da8956ee83958e6fb9c9a5a430caa3
 
 ---
 
@@ -22,9 +27,12 @@ spec:
     storage: 5Gi
   accessModes:
     - ReadWriteMany
-  
   nfs:
+<<<<<<< HEAD
     server: 172.31.29.200
+=======
+    server: <NFS-SERVER-IP>
+>>>>>>> 6b7023e4b5da8956ee83958e6fb9c9a5a430caa3
     path: /home/ubuntu/data/results
 
 ---
